@@ -35,3 +35,26 @@ def test_baselines_predict_top1_support():
     assert majority_baseline(bm25) == [{"id": 7, "evidence": {"1": {"sentences": [0, 1, 2], "label": "SUPPORT"}}}]
     lex = lexical_baseline(bm25, corpus, [Claim(7, "claim words", {})])
     assert lex[0]["evidence"]["1"]["sentences"][0] == 2
+
+
+def test_claim_bootstrap_resamples_whole_claims():
+    import pandas as pd
+
+    from lib.evalstats import claim_bootstrap_ci
+
+    # Every claim has the same per-claim mean, so any resample of whole claims gives exactly 0.5;
+    # a row-level resample would not.
+    df = pd.DataFrame({"claim_id": [1, 1, 2, 2, 3, 3], "x": [0, 1, 1, 0, 0, 1]})
+    lo, hi = claim_bootstrap_ci(df, lambda d: float(d["x"].mean()))
+    assert lo == pytest.approx(0.5) and hi == pytest.approx(0.5)
+
+
+def test_claim_bootstrap_ci_brackets_point_estimate():
+    import pandas as pd
+
+    from lib.evalstats import claim_bootstrap_ci
+
+    rng = np.random.default_rng(0)
+    df = pd.DataFrame({"claim_id": np.repeat(np.arange(40), 3), "x": rng.integers(0, 2, 120)})
+    lo, hi = claim_bootstrap_ci(df, lambda d: float(d["x"].mean()))
+    assert lo < df["x"].mean() < hi

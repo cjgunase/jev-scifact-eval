@@ -90,7 +90,9 @@ the answers are those of a single run. See `docs/scifact_question_development_lo
   - Abstract-level Label-only and Label+Rationale.
   - Sentence-level Selection-only and Selection+Label.
   - Each reported as precision, recall and F1.
-- **Uncertainty.** 95% percentile bootstrap CIs: 1,000 resamples of claims (seed 20260929); counts are summed within each resample.
+- **Uncertainty.** 95% percentile bootstrap CIs for every reported dev metric: 1,000 resamples of claims (seed 20260929),
+  keeping all rows of a claim together. Official metric counts are summed within each resample. Jev − BM25 retrieval differences
+  use a paired bootstrap.
 - **Retrieval.** Micro recall@k over (claim, gold abstract) pairs; MRR of the first gold abstract per claim.
 - **Verification in isolation.** Measured on (claim, gold abstract) pairs, plus NEI claims paired with their re-ranked top-1 abstract (gold label `not_enough_info`).
 - **Calibration.** Expected calibration error (ECE), using 10 equal-width bins weighted by count:
@@ -117,22 +119,26 @@ Jev precision and recall: abstract Label+Rationale P = 0.589, R = 0.665; sentenc
 
 | Ranker | R@1 | R@3 | R@10 | R@30 | MRR |
 |---|---|---|---|---|---|
-| BM25 | 0.656 | 0.785 | 0.909 | 0.933 | 0.801 |
-| BM25 → Jev re-rank | **0.756** | **0.871** | **0.933** | 0.933 | **0.884** |
+| BM25 | 0.656 [0.583, 0.730] | 0.785 [0.718, 0.852] | 0.909 [0.858, 0.950] | 0.933 | 0.801 [0.752, 0.847] |
+| BM25 → Jev re-rank | **0.756** [0.694, 0.824] | **0.871** [0.822, 0.919] | **0.933** [0.894, 0.967] | 0.933 | **0.884** [0.844, 0.922] |
+| Paired difference (Jev − BM25) | **+0.100** [0.048, 0.157] | **+0.086** [0.040, 0.133] | +0.024 [0.005, 0.049] | 0 | **+0.083** [0.044, 0.126] |
 
+95% CIs come from resampling claims. Differences are paired (both rankers are scored on the same resample).
 R@30 is identical by construction: re-ranking can only reorder the top 30.
 
 ![Retrieval](../results/figures/retrieval_recall_at_k_dev.png)
 
 ### 7.3 Verification in isolation
 
-| Quantity | Value |
+| Quantity | Value [95% CI] |
 |---|---|
-| Verdict accuracy, gold pairs (n = 209) | 0.880 |
-| Macro-F1, supports vs contradicts | 0.914 |
-| NEI accuracy (NEI claims × re-ranked top-1, n = 112) | 0.652 |
-| Evidence sentences at τ_s = 0.9: P / R / F1 | 0.545 / 0.760 / 0.635 |
-| Evidence Noul AUROC | 0.899 |
+| Verdict accuracy, gold pairs (n = 209) | 0.880 [0.835, 0.924] |
+| Macro-F1, supports vs contradicts | 0.914 [0.875, 0.947] |
+| NEI accuracy (NEI claims × re-ranked top-1, n = 112) | 0.652 [0.563, 0.732] |
+| Evidence sentences at τ_s = 0.9 (n = 2,031 sentences): precision | 0.545 [0.502, 0.591] |
+| Evidence sentences at τ_s = 0.9: recall | 0.760 [0.701, 0.813] |
+| Evidence sentences at τ_s = 0.9: F1 | 0.635 [0.598, 0.671] |
+| Evidence Noul AUROC | 0.899 [0.878, 0.919] |
 
 Verdict confusion (rows = gold, columns = predicted):
 
@@ -144,7 +150,7 @@ Verdict confusion (rows = gold, columns = predicted):
 
 ### 7.4 Confidence
 
-- **Verdict:** ECE = 0.116. The selective-prediction curve rises monotonically overall:
+- **Verdict:** ECE = 0.116 [0.086, 0.165]. The selective-prediction curve rises monotonically overall:
 
   | Coverage | Accuracy |
   |---|---|
@@ -153,7 +159,7 @@ Verdict confusion (rows = gold, columns = predicted):
   | 0.75 | 0.87 |
   | 0.52 | 0.89 |
 
-- **Evidence Nouls:** ECE = 0.377, strongly **overconfident**. Among sentences with P(evidence) ≥ 0.9, only 57% are gold evidence.
+- **Evidence Nouls:** ECE = 0.377 [0.357, 0.398], strongly **overconfident**. Among sentences with P(evidence) ≥ 0.9, only 54.5% are gold evidence (57% for P > 0.9; reliability bins are right-closed, (lo, hi]).
   Their *ranking* is good (AUROC 0.899), so a threshold tuned on labelled data works (as here), but raw
   P(evidence) should not be read as a probability. Part of the gap is annotation granularity: SciFact
   rationales are minimal sets, so sentences that are relevant but redundant count as negatives.
@@ -168,7 +174,9 @@ Verdict confusion (rows = gold, columns = predicted):
   10,000 samples, the only dev-set figures that paper reports. They are on the same claims and use the same metric code,
   so this is the one head-to-head comparison. VeriSci is a fine-tuned RoBERTa-large pipeline trained on the SciFact train split.
   Jev, used zero-shot with two thresholds tuned on 100 train claims, scores higher on both abstract-level metrics.
-  - Label+Rationale: 0.625 vs 0.485. VeriSci falls below the lower bound of Jev's 95% CI.
+  - Label+Rationale: 0.625 [0.567, 0.684] vs 0.485. The gap (0.14) is large relative to both systems' reported sampling
+    variability (VeriSci bootstrap SD 0.033), but this is **not a formal paired test**: VeriSci's per-claim dev predictions
+    were not rerun here.
   - Sentence-level: comparable. Selection 0.461 vs 0.477; Selection+Label 0.447 vs 0.426, both within Jev's CI.
 - **MultiVerS** (Wadden et al., 2022) reports only the **test** split, and trains on train+dev (Table 1: 1,109 training claims).
   Its numbers are context only, not a head-to-head comparison. The current fine-tuned state of the art remains well above

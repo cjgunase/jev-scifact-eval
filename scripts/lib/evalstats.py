@@ -71,3 +71,9 @@ def selective_curve(conf, correct) -> pd.DataFrame:
         if m.any():
             rows.append({"threshold": float(th), "coverage": float(m.mean()), "accuracy": float(correct[m].mean())})
     return pd.DataFrame(rows)
+
+
+def claim_bootstrap_ci(df: pd.DataFrame, stat_fn, claim_col: str = "claim_id", **kw) -> tuple[float, float]:
+    """95% CI of stat_fn(df), resampling whole claims (rows of one claim stay together)."""
+    groups = [g for _, g in df.groupby(claim_col, sort=True)]
+    return bootstrap_ci(groups, lambda gs: stat_fn(pd.concat(gs, ignore_index=True)), **kw)

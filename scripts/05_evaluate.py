@@ -20,7 +20,7 @@ from sklearn.metrics import f1_score, roc_auc_score
 from lib.baselines import lexical_baseline, majority_baseline
 from lib.budget import LEDGER_PATH
 from lib.data import ROOT, load_corpus, load_split, read_jsonl, split_dir
-from lib.evalstats import bootstrap_ci, ece, mrr, recall_at_k, reliability, selective_curve
+from lib.evalstats import bootstrap_ci, claim_bootstrap_ci, ece, recall_at_k, reliability, selective_curve
 from lib.official import claim_counts, metrics_from_counts
 
 TABLES, FIGS = ROOT / "results" / "tables", ROOT / "results" / "figures"
@@ -71,6 +71,73 @@ def sentence_table(verify_rows, claims) -> pd.DataFrame:
         gold_idx = {i for rat in ev[1] for i in rat}
         out += [{"claim_id": r["claim_id"], "p": p, "gold": int(i in gold_idx)} for i, p in enumerate(r["evidence_probs"])]
     return pd.DataFrame(out)
+
+
+def _with_ci(name: str, df: pd.DataFrame, stat_fn) -> dict:
+    lo, hi = claim_bootstrap_ci(df, stat_fn)
+    return {"metric": name, "value": stat_fn(df), "lo": lo, "hi": hi}
+
+
+def retrieval_with_ci(bm25_rank, jev_rank, gold_docs) -> pd.DataFrame:
+    """R@k and MRR per ranker, plus the paired Jev − BM25 difference; CIs resample claims."""
+    rows = []
+    for cid, g in gold_docs.items():
+        if not g:
+            continue
+        row = {"claim_id": cid, "n_gold": len(g)}
+        for name, rk in (("bm25", bm25_rank), ("jev", jev_rank)):
+            ranked = rk.get(cid, [])
+            for k in (1, 3, 10, 30):
+                row[f"{name}_hits@{k}"] = len(g & set(ranked[:k]))
+            ranks = [i for i, d in enumerate(ranked, start=1) if d in g]
+            row[f"{name}_rr"] = 1 / ranks[0] if ranks else 0.0
+        rows.append(row)
+    pc = pd.DataFrame(rows)
+
+    def recall(name, k):
+        return lambda d: d[f"{name}_hits@{k}"].sum() / d["n_gold"].sum()
+
+    def rr(name):
+        return lambda d: d[f"{name}_rr"].mean()
+
+    out = []
+    for k in (1, 3, 10, 30):
+        out += [{"ranker": "BM25", **_with_ci(f"R@{k}", pc, recall("bm25", k))},
+                {"ranker": "Jev re-rank", **_with_ci(f"R@{k}", pc, recall("jev", k))},
+                {"ranker": "Jev - BM25 (paired)",
+                 **_with_ci(f"R@{k}", pc, lambda d, k=k: recall("jev", k)(d) - recall("bm25", k)(d))}]
+    out += [{"ranker": "BM25", **_with_ci("MRR", pc, rr("bm25"))},
+            {"ranker": "Jev re-rank", **_with_ci("MRR", pc, rr("jev"))},
+            {"ranker": "Jev - BM25 (paired)", **_with_ci("MRR", pc, lambda d: rr("jev")(d) - rr("bm25")(d))}]
+    return pd.DataFrame(out)
+
+
+def verification_with_ci(vt: pd.DataFrame, st: pd.DataFrame, tau_s: float) -> pd.DataFrame:
+    gp = vt[vt["gold"] != "not_enough_info"]
+    nei = vt[vt["gold"] == "not_enough_info"]
+
+    def evidence_prf(d):
+        pred = d["p"] >= tau_s
+        tp = int((pred & (d["gold"] == 1)).sum())
+        p = tp / max(int(pred.sum()), 1)
+        r = tp / max(int(d["gold"].sum()), 1)
+        return p, r, (2 * p * r / (p + r) if p + r else 0.0)
+
+    rows = [
+        _with_ci("verdict_accuracy_gold_pairs", gp, lambda d: d["correct"].mean()),
+        _with_ci("verdict_macro_f1_support_contradict", gp,
+                 lambda d: f1_score(d["gold"], d["pred"], labels=["supports", "contradicts"],
+                                    average="macro", zero_division=0)),
+        _with_ci("nei_accuracy", nei, lambda d: d["correct"].mean()),
+        _with_ci("evidence_precision", st, lambda d: evidence_prf(d)[0]),
+        _with_ci("evidence_recall", st, lambda d: evidence_prf(d)[1]),
+        _with_ci("evidence_f1", st, lambda d: evidence_prf(d)[2]),
+        _with_ci("evidence_auroc", st, lambda d: roc_auc_score(d["gold"], d["p"])),
+    ]
+    out = pd.DataFrame(rows)
+    out["n"] = [len(gp), len(gp), len(nei)] + [len(st)] * 4
+    out["tau_sentence"] = tau_s
+    return out
 
 
 def fig_retrieval(bm25_rank, jev_rank, gold, path):
@@ -160,40 +227,25 @@ def main() -> None:
     gold_docs = {c.claim_id: set(c.evidence) for c in claims}
     bm25_rank = {r["claim_id"]: r["doc_ids"] for r in bm25_rows}
     jev_rank = {r["claim_id"]: r["doc_ids"] for r in rerank_rows}
-    retr = pd.DataFrame([{"ranker": n, **{f"R@{k}": recall_at_k(rk, gold_docs, k) for k in (1, 3, 10, 30)},
-                          "MRR": mrr(rk, gold_docs)} for n, rk in (("BM25", bm25_rank), ("Jev re-rank", jev_rank))])
+    retr = retrieval_with_ci(bm25_rank, jev_rank, gold_docs)
     retr.to_csv(TABLES / f"retrieval_{split}.csv", index=False)
     fig_retrieval(bm25_rank, jev_rank, gold_docs, FIGS / f"retrieval_recall_at_k_{split}.png")
 
     # Verification in isolation, plus calibration.
     vt = verdict_table(verify_rows, claims)
-    gp = vt[vt["gold"] != "not_enough_info"]
     st = sentence_table(verify_rows, claims)
     tau_s = json.loads((TABLES / "thresholds.json").read_text())["tau_sentence"]
-    pred_s = (st["p"] >= tau_s).astype(int)
-    tp = int(((pred_s == 1) & (st["gold"] == 1)).sum())
-    prec = tp / max(int(pred_s.sum()), 1)
-    rec = tp / max(int(st["gold"].sum()), 1)
-    oracle = pd.DataFrame([{
-        "n_gold_pairs": len(gp),
-        "verdict_accuracy_gold_pairs": gp["correct"].mean(),
-        "verdict_macro_f1_support_contradict": f1_score(gp["gold"], gp["pred"],
-                                                        labels=["supports", "contradicts"], average="macro"),
-        "n_nei_pairs": int((vt["gold"] == "not_enough_info").sum()),
-        "nei_accuracy": vt.loc[vt["gold"] == "not_enough_info", "correct"].mean(),
-        "evidence_precision": prec, "evidence_recall": rec,
-        "evidence_f1": 2 * prec * rec / (prec + rec) if prec + rec else 0.0,
-        "evidence_auroc": roc_auc_score(st["gold"], st["p"]),
-        "tau_sentence": tau_s,
-    }])
+    oracle = verification_with_ci(vt, st, tau_s)
     oracle.to_csv(TABLES / f"verification_oracle_{split}.csv", index=False)
     pd.crosstab(vt["gold"], vt["pred"]).to_csv(TABLES / f"verdict_confusion_{split}.csv")
 
     rel_v, rel_e = reliability(vt["p_max"], vt["correct"]), reliability(st["p"], st["gold"])
     pd.concat([rel_v.assign(question="verdict (max prob vs correct)"),
                rel_e.assign(question="evidence noul (P vs gold)")]).to_csv(TABLES / f"calibration_{split}.csv", index=False)
-    pd.DataFrame([{"question": "verdict", "ece": ece(vt["p_max"], vt["correct"])},
-                  {"question": "evidence", "ece": ece(st["p"], st["gold"])}]).to_csv(TABLES / f"ece_{split}.csv", index=False)
+    pd.DataFrame([
+        _with_ci("verdict", vt, lambda d: ece(d["p_max"], d["correct"])),
+        _with_ci("evidence", st, lambda d: ece(d["p"], d["gold"])),
+    ]).rename(columns={"metric": "question", "value": "ece"}).to_csv(TABLES / f"ece_{split}.csv", index=False)
     fig_reliability(rel_v, "Verdict calibration", "Top-choice probability", FIGS / f"reliability_verdict_{split}.png", BLUE)
     fig_reliability(rel_e, "Evidence-sentence calibration", "P(evidence)", FIGS / f"reliability_evidence_{split}.png", PURPLE)
     curve = selective_curve(vt["confidence"], vt["correct"])
@@ -214,7 +266,7 @@ def main() -> None:
 
     print(official.pivot(index="system", columns="metric", values="f1").round(3).to_string())
     print(retr.round(3).to_string(index=False))
-    print(oracle.round(3).T.to_string())
+    print(oracle.round(3).to_string(index=False))
     print(f"total spend ${ledger['cost_usd'].sum():.4f}")
 
 
