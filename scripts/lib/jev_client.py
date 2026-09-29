@@ -14,6 +14,26 @@ from lib.data import PROCESSED_DIR
 
 MODEL_ID = "jev-1.13.0"
 CACHE_DIR = PROCESSED_DIR / "jev_cache"
+# SDK defaults (10 s timeout, 2 retries) failed on transient disconnects under service load.
+CLIENT_TIMEOUT_S = 60.0
+
+
+def _retry_policy():
+    from typesafe_sdk import RetryPolicy
+
+    return RetryPolicy(max_retries=6, backoff_initial=1.0, backoff_max=30.0, timeout=300.0)
+
+
+RETRY_POLICY = _retry_policy()
+
+
+def make_client(api_key: str | None = None):
+    """AsyncTypeSafeClient configured for long batch runs."""
+    from typesafe_sdk import AsyncTypeSafeClient
+
+    return AsyncTypeSafeClient(api_key=api_key, timeout=CLIENT_TIMEOUT_S, retry=RETRY_POLICY)
+
+
 Call = Callable[[dict, dict, str], Awaitable[dict]]
 
 

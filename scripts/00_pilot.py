@@ -11,7 +11,7 @@ import sys
 
 from lib.budget import BUDGET_CAP_USD, PRICE_PER_TOKEN_USD, Budget
 from lib.data import load_corpus, load_split, read_jsonl, rerank_state, split_dir
-from lib.jev_client import JevRunner, gather_or_stop, make_sdk_call, run_with_budget
+from lib.jev_client import JevRunner, gather_or_stop, make_client, make_sdk_call, run_with_budget
 from lib.questions import QUESTION_VERSION, relevance_questions
 
 verify_mod = importlib.import_module("03_jev_verify")
@@ -22,13 +22,11 @@ N_VERIFY = (300 * 3 + 60) + 2 * (100 * 3 + 40)  # top-3 + estimated oracle pairs
 
 
 async def main_async() -> None:
-    from typesafe_sdk import AsyncTypeSafeClient
-
     corpus, claims = load_corpus(), load_split("train")
     claim = next(c for c in claims if c.evidence)
     bm25 = next(r for r in read_jsonl(split_dir("train") / "bm25_top30.jsonl") if r["claim_id"] == claim.claim_id)
     docs = [corpus[d] for d in bm25["doc_ids"][:5]]
-    async with AsyncTypeSafeClient() as client:
+    async with make_client() as client:
         runner = JevRunner(Budget(), make_sdk_call(client))
         before = runner.budget.spent_usd
         rr = await gather_or_stop([runner.ask(rerank_state(claim, d), relevance_questions(), stage="pilot_rerank",

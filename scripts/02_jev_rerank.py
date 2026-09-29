@@ -9,7 +9,7 @@ import argparse
 
 from lib.budget import Budget
 from lib.data import load_corpus, load_split, read_jsonl, rerank_state, split_dir, write_jsonl
-from lib.jev_client import JevRunner, gather_or_stop, make_sdk_call, run_with_budget
+from lib.jev_client import JevRunner, gather_or_stop, make_client, make_sdk_call, run_with_budget
 from lib.questions import QUESTION_VERSION, relevance_questions
 
 
@@ -32,11 +32,9 @@ async def rerank_claim(runner, claim, corpus, bm25_row, split) -> dict:
 
 
 async def main_async(split: str) -> None:
-    from typesafe_sdk import AsyncTypeSafeClient
-
     corpus, claims = load_corpus(), {c.claim_id: c for c in load_split(split)}
     bm25_rows = read_jsonl(split_dir(split) / "bm25_top30.jsonl")
-    async with AsyncTypeSafeClient() as client:
+    async with make_client() as client:
         runner = JevRunner(Budget(), make_sdk_call(client))
         rows = await gather_or_stop([rerank_claim(runner, claims[r["claim_id"]], corpus, r, split) for r in bm25_rows])
     write_jsonl(split_dir(split) / "rerank.jsonl", rows)

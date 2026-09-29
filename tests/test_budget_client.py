@@ -75,3 +75,12 @@ def test_failed_call_releases_reservation(tmp_path):
         run(r.ask(STATE, QS, stage="t", split="train", question_version="v1"))
     assert budget._reserved_usd == 0 and budget.spent_usd == 0
     assert not any((tmp_path / "c").glob("*.json"))
+
+
+def test_sdk_client_tolerates_a_slow_service():
+    # Dev rerank failed twice on transient disconnects/10 s timeouts with SDK defaults (2 retries).
+    from lib.jev_client import CLIENT_TIMEOUT_S, RETRY_POLICY, make_client
+
+    assert CLIENT_TIMEOUT_S >= 60
+    assert RETRY_POLICY.max_retries >= 5 and RETRY_POLICY.api_timeout_error and RETRY_POLICY.api_connection_error
+    assert make_client(api_key="test-key") is not None

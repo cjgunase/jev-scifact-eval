@@ -9,7 +9,7 @@ import argparse
 
 from lib.budget import Budget
 from lib.data import load_corpus, load_split, read_jsonl, split_dir, verify_state, write_jsonl
-from lib.jev_client import JevRunner, gather_or_stop, make_sdk_call, run_with_budget
+from lib.jev_client import JevRunner, gather_or_stop, make_client, make_sdk_call, run_with_budget
 from lib.questions import QUESTION_VERSION, verify_question_chunks
 
 TOP_N = 3
@@ -45,14 +45,12 @@ async def verify_pair(runner, claim, doc, split) -> dict:
 
 
 async def main_async(split: str) -> None:
-    from typesafe_sdk import AsyncTypeSafeClient
-
     corpus, claims = load_corpus(), load_split(split)
     by_id = {c.claim_id: c for c in claims}
     rerank_rows = read_jsonl(split_dir(split) / "rerank.jsonl")
     positions = {(r["claim_id"], d): i for r in rerank_rows for i, d in enumerate(r["doc_ids"])}
     pairs = select_pairs(rerank_rows, claims)
-    async with AsyncTypeSafeClient() as client:
+    async with make_client() as client:
         runner = JevRunner(Budget(), make_sdk_call(client))
         rows = await gather_or_stop([verify_pair(runner, by_id[c], corpus[d], split) for c, d, _ in pairs])
     for row, (c, d, is_oracle) in zip(rows, pairs):
