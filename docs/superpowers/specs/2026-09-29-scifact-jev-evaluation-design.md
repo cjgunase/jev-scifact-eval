@@ -30,7 +30,7 @@ SciFact (Wadden et al., 2020), from AI2's original release:
 - A corpus of ~5.2k PubMed abstracts, pre-split into sentences.
 - Expert-written claims, each with gold evidence: relevant abstract IDs, a label per abstract
   (`SUPPORT` / `CONTRADICT`), and evidence sentence sets. Claims without evidence count as NEI (not enough info).
-- License: CC BY-NC 2.0. Raw files live in `data/raw/scifact/` (gitignored) and are never modified.
+- License (per the repository LICENSE.md): claims CC BY 4.0; abstracts ODC-By 1.0 (from S2ORC); code Apache-2.0. Raw files live in `data/raw/scifact/` (gitignored) and are never modified.
 - Recorded at download (2026-09-29): tarball SHA-256 `11c62128…76be`; corpus 5,183 abstracts (median 8 sentences, max 367); train 809 claims (505 with evidence); dev 300 claims (188 with evidence).
 - **Join-key caveat:** `doc_id` is an int in the corpus but a string key in `claims.evidence`. Every join must cast explicitly.
 

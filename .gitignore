@@ -13,3 +13,6 @@ __pycache__/
 # Editor / tool internals
 .superpowers/
 ~$*
+
+# Jev response cache (large, reproducible from ledgered calls)
+data/processed/scifact/jev_cache/

@@ -18,7 +18,7 @@
 - **Splits:** train = a fixed sample of 100 claims from `claims_train.jsonl` (`numpy.random.default_rng(20260929)`); dev = all 300 claims in `claims_dev.jsonl`, run **once**, after the questions are frozen.
 - **Join keys:** `doc_id` is an `int` in `corpus.jsonl` but a `str` key in `claims_*.jsonl` `evidence`. Cast to `int` at load time and never join on the raw strings.
 - **Leakage:** a Jev state may contain only `claim` and `abstract` (`title`, `text` or `sentences`). Gold fields never enter a state.
-- **Raw data** (`data/raw/scifact/`, CC BY-NC 2.0) is gitignored and never modified. The Jev cache is gitignored; small processed JSONL and results are committed.
+- **Raw data** (`data/raw/scifact/`; claims CC BY 4.0, abstracts ODC-By 1.0) is gitignored and never modified. The Jev cache is gitignored; small processed JSONL and results are committed.
 - **Bootstrap:** 1,000 resamples of claims, seed `20260929`, 95% percentile CIs.
 - **Plots:** follow the global style in `~/.claude/CLAUDE.md` (white background, no top or right spines, bold labels, the given palette, `dpi=180`, `bbox_inches='tight'`, `tight_layout()`).
 - **Commits:** end every commit message with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
