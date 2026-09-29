@@ -1,0 +1,8 @@
+system,split,retrieval_setting,metric,precision,recall,f1,source
+VeriSci,dev,open,sentence_selection,0.525,0.438,0.477,"arXiv:2004.14974 Table 7a row 6 (bootstrap means, 10k samples)"
+VeriSci,dev,open,sentence_label,0.469,0.392,0.426,"arXiv:2004.14974 Table 7a row 6 (bootstrap means, 10k samples)"
+VeriSci,dev,open,abstract_label_only,0.554,0.475,0.510,"arXiv:2004.14974 Table 7b row 6 (bootstrap means, 10k samples)"
+VeriSci,dev,open,abstract_rationalized,0.526,0.451,0.485,"arXiv:2004.14974 Table 7b row 6 (bootstrap means, 10k samples)"
+MultiVerS,test,open,abstract_label_only,0.738,0.712,0.725,"arXiv:2112.01640 Table 2, SciFact column, Full setting; split = test per Table 1 (trained on 1,109 = train+dev)"
+MultiVerS,test,open,sentence_label,0.674,0.670,0.672,"arXiv:2112.01640 Table 2, SciFact column, Full setting; split = test per Table 1 (trained on 1,109 = train+dev)"
+MultiVerS,test,open,NOTE,,,,"MultiVerS reports only abstract label-only and sentence selection+label, on test, with dev used for training: context only, not head-to-head"
