@@ -1,4 +1,6 @@
 stage,split,question_version,input_tokens,cost_usd
 pilot_rerank,train,v1,4508,0.00018934
+rerank,dev,v1,6997226,0.29388366
 rerank,train,v1,2332243,0.09795394
+verify,dev,v1,1242030,0.0521652
 verify,train,v1,421504,0.01770324

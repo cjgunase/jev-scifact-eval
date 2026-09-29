@@ -1,0 +1,2 @@
+n_gold_pairs,verdict_accuracy_gold_pairs,verdict_macro_f1_support_contradict,n_nei_pairs,nei_accuracy,evidence_precision,evidence_recall,evidence_f1,evidence_auroc,tau_sentence
+209,0.8803827751196173,0.9139317889317888,112,0.6517857142857143,0.5450980392156862,0.7595628415300546,0.6347031963470319,0.8994387830453405,0.9
