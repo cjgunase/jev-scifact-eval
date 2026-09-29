@@ -1,0 +1,15 @@
+# Data
+data/raw/*
+!data/raw/.gitkeep
+# Small, hand-authored synthetic benchmark: safe and useful to version
+!data/raw/geo_style_samples.json
+
+# System / Python
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# Editor / tool internals
+.superpowers/
+~$*

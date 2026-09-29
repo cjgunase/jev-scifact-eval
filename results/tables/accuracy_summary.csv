@@ -1,0 +1,16 @@
+question,set,n,n_correct,accuracy
+tissue,all,30,29,0.967
+tissue,ambiguous,9,8,0.889
+tissue,clear,21,21,1.0
+condition,all,30,30,1.0
+condition,ambiguous,9,9,1.0
+condition,clear,21,21,1.0
+assay,all,30,30,1.0
+assay,ambiguous,9,9,1.0
+assay,clear,21,21,1.0
+cell_line,all,30,30,1.0
+cell_line,ambiguous,9,9,1.0
+cell_line,clear,21,21,1.0
+treated,all,30,30,1.0
+treated,ambiguous,9,9,1.0
+treated,clear,21,21,1.0

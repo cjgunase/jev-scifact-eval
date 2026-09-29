@@ -1,0 +1,1802 @@
+[
+  {
+    "sample_id": "S01",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "liver",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 0.0,
+          "breast": 0.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "colon": 0.0,
+          "liver": 1.0,
+          "other_or_unclear": 0.0,
+          "blood": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.0,
+          "tumor": 1.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "other": 0.0,
+          "wgs_wes": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "atac_seq": 0.0,
+          "dna_methylation": 0.0,
+          "bulk_rna_seq": 1.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1063,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S02",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "liver",
+        "confidence": 1.0,
+        "probabilities": {
+          "breast": 0.0,
+          "skin": 0.0,
+          "blood": 0.0,
+          "kidney": 0.0,
+          "colon": 0.0,
+          "brain": 0.0,
+          "lung": 0.0,
+          "liver": 1.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor_adjacent_normal",
+        "confidence": 0.94,
+        "probabilities": {
+          "unclear": 0.0,
+          "healthy_control": 0.04,
+          "tumor": 0.0,
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.96
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "bulk_rna_seq": 1.0,
+          "wgs_wes": 0.0,
+          "chip_seq": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1064,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S03",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "liver",
+        "confidence": 1.0,
+        "probabilities": {
+          "liver": 1.0,
+          "lung": 0.0,
+          "breast": 0.0,
+          "colon": 0.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "skin": 0.0,
+          "kidney": 0.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "tumor": 1.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "bulk_rna_seq": 1.0,
+          "single_cell_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0,
+          "atac_seq": 0.0,
+          "wgs_wes": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    "usage": {
+      "input_tokens": 1067,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S04",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "liver",
+        "confidence": 1.0,
+        "probabilities": {
+          "colon": 0.0,
+          "brain": 0.0,
+          "kidney": 0.0,
+          "blood": 0.0,
+          "breast": 0.0,
+          "skin": 0.0,
+          "liver": 1.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "tumor": 1.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "single_cell_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "wgs_wes": 0.0,
+          "bulk_rna_seq": 1.0,
+          "chip_seq": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1064,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S05",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "lung",
+        "confidence": 1.0,
+        "probabilities": {
+          "colon": 0.0,
+          "breast": 0.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "lung": 1.0,
+          "kidney": 0.0,
+          "skin": 0.0,
+          "liver": 0.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor": 1.0,
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "dna_methylation",
+        "confidence": 1.0,
+        "probabilities": {
+          "other": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "chip_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 1.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.07
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1068,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S06",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "lung",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 0.0,
+          "kidney": 0.0,
+          "other_or_unclear": 0.0,
+          "lung": 1.0,
+          "liver": 0.0,
+          "colon": 0.0,
+          "blood": 0.0,
+          "breast": 0.0,
+          "brain": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor_adjacent_normal",
+        "confidence": 0.89,
+        "probabilities": {
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.91,
+          "unclear": 0.07,
+          "tumor": 0.0,
+          "healthy_control": 0.02
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "dna_methylation",
+        "confidence": 1.0,
+        "probabilities": {
+          "dna_methylation": 1.0,
+          "other": 0.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1067,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S07",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "lung",
+        "confidence": 1.0,
+        "probabilities": {
+          "liver": 0.0,
+          "blood": 0.0,
+          "colon": 0.0,
+          "other_or_unclear": 0.0,
+          "kidney": 0.0,
+          "skin": 0.0,
+          "breast": 0.0,
+          "brain": 0.0,
+          "lung": 1.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "tumor": 0.0,
+          "non_cancer_disease": 1.0,
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "single_cell_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "other": 0.0,
+          "bulk_rna_seq": 0.0,
+          "atac_seq": 0.0,
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 1.0,
+          "dna_methylation": 0.0,
+          "wgs_wes": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.05
+      }
+    },
+    "usage": {
+      "input_tokens": 1065,
+      "output_tokens": 274
+    }
+  },
+  {
+    "sample_id": "S08",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "breast",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 0.0,
+          "colon": 0.0,
+          "kidney": 0.0,
+          "liver": 0.0,
+          "brain": 0.0,
+          "lung": 0.0,
+          "blood": 0.0,
+          "other_or_unclear": 0.0,
+          "breast": 1.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor_adjacent_normal": 0.0,
+          "unclear": 0.0,
+          "tumor": 1.0,
+          "non_cancer_disease": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "chip_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "dna_methylation": 0.0,
+          "chip_seq": 1.0,
+          "single_cell_rna_seq": 0.0,
+          "other": 0.0,
+          "atac_seq": 0.0,
+          "wgs_wes": 0.0,
+          "bulk_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    "usage": {
+      "input_tokens": 1096,
+      "output_tokens": 268
+    }
+  },
+  {
+    "sample_id": "S09",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "breast",
+        "confidence": 1.0,
+        "probabilities": {
+          "other_or_unclear": 0.0,
+          "liver": 0.0,
+          "breast": 1.0,
+          "lung": 0.0,
+          "colon": 0.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "skin": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 0.0,
+          "tumor": 1.0,
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "single_cell_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 1.0,
+          "dna_methylation": 0.0,
+          "other": 0.0,
+          "chip_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1051,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S10",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "breast",
+        "confidence": 1.0,
+        "probabilities": {
+          "blood": 0.0,
+          "breast": 1.0,
+          "brain": 0.0,
+          "colon": 0.0,
+          "kidney": 0.0,
+          "lung": 0.0,
+          "skin": 0.0,
+          "liver": 0.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor": 0.0,
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 1.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "atac_seq",
+        "confidence": 0.98,
+        "probabilities": {
+          "other": 0.0,
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 0.01,
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "bulk_rna_seq": 0.0,
+          "atac_seq": 0.99
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.05
+      }
+    },
+    "usage": {
+      "input_tokens": 1058,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S11",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "colon",
+        "confidence": 1.0,
+        "probabilities": {
+          "other_or_unclear": 0.0,
+          "skin": 0.0,
+          "lung": 0.0,
+          "blood": 0.0,
+          "colon": 1.0,
+          "breast": 0.0,
+          "brain": 0.0,
+          "kidney": 0.0,
+          "liver": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "non_cancer_disease": 1.0,
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "tumor": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "bulk_rna_seq": 1.0,
+          "wgs_wes": 0.0,
+          "atac_seq": 0.0,
+          "other": 0.0,
+          "chip_seq": 0.0,
+          "dna_methylation": 0.0,
+          "single_cell_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.06
+      }
+    },
+    "usage": {
+      "input_tokens": 1059,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S12",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "colon",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 0.0,
+          "kidney": 0.0,
+          "other_or_unclear": 0.0,
+          "lung": 0.0,
+          "liver": 0.0,
+          "colon": 1.0,
+          "blood": 0.0,
+          "brain": 0.0,
+          "breast": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "unclear": 0.0,
+          "tumor": 1.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "wgs_wes",
+        "confidence": 1.0,
+        "probabilities": {
+          "single_cell_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "wgs_wes": 1.0,
+          "chip_seq": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1056,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S13",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "colon",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 0.0,
+          "colon": 1.0,
+          "liver": 0.0,
+          "blood": 0.0,
+          "breast": 0.0,
+          "other_or_unclear": 0.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "tumor": 1.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 1.0,
+          "wgs_wes": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    "usage": {
+      "input_tokens": 1054,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S14",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "colon",
+        "confidence": 1.0,
+        "probabilities": {
+          "liver": 0.0,
+          "lung": 0.0,
+          "breast": 0.0,
+          "colon": 1.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "skin": 0.0,
+          "kidney": 0.0,
+          "other_or_unclear": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 1.0,
+          "tumor": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "single_cell_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "bulk_rna_seq": 0.0,
+          "single_cell_rna_seq": 1.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0,
+          "atac_seq": 0.0,
+          "wgs_wes": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1052,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S15",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "brain",
+        "confidence": 1.0,
+        "probabilities": {
+          "breast": 0.0,
+          "blood": 0.0,
+          "skin": 0.0,
+          "brain": 1.0,
+          "other_or_unclear": 0.0,
+          "colon": 0.0,
+          "kidney": 0.0,
+          "liver": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "tumor": 1.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "single_cell_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 1.0,
+          "bulk_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1051,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S16",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "brain",
+        "confidence": 1.0,
+        "probabilities": {
+          "kidney": 0.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0,
+          "blood": 0.0,
+          "brain": 1.0,
+          "colon": 0.0,
+          "breast": 0.0,
+          "liver": 0.0,
+          "skin": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "non_cancer_disease": 1.0,
+          "healthy_control": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "tumor": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "single_cell_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "other": 0.0,
+          "wgs_wes": 0.0,
+          "bulk_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "single_cell_rna_seq": 1.0,
+          "atac_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1069,
+      "output_tokens": 274
+    }
+  },
+  {
+    "sample_id": "S17",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "brain",
+        "confidence": 1.0,
+        "probabilities": {
+          "kidney": 0.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0,
+          "blood": 0.0,
+          "brain": 1.0,
+          "colon": 0.0,
+          "breast": 0.0,
+          "liver": 0.0,
+          "skin": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0,
+          "healthy_control": 1.0,
+          "tumor_adjacent_normal": 0.0,
+          "tumor": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "other": 0.0,
+          "chip_seq": 0.0,
+          "dna_methylation": 0.0,
+          "bulk_rna_seq": 1.0,
+          "wgs_wes": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "atac_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1041,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S18",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "blood",
+        "confidence": 1.0,
+        "probabilities": {
+          "lung": 0.0,
+          "skin": 0.0,
+          "liver": 0.0,
+          "other_or_unclear": 0.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "colon": 0.0,
+          "breast": 0.0,
+          "blood": 1.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 1.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "single_cell_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "bulk_rna_seq": 0.0,
+          "atac_seq": 0.0,
+          "other": 0.0,
+          "single_cell_rna_seq": 1.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1054,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S19",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "blood",
+        "confidence": 1.0,
+        "probabilities": {
+          "kidney": 0.0,
+          "other_or_unclear": 0.0,
+          "skin": 0.0,
+          "brain": 0.0,
+          "lung": 0.0,
+          "colon": 0.0,
+          "liver": 0.0,
+          "breast": 0.0,
+          "blood": 1.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 1.0,
+          "unclear": 0.0,
+          "tumor": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "other": 0.0,
+          "dna_methylation": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "bulk_rna_seq": 1.0,
+          "atac_seq": 0.0,
+          "chip_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    "usage": {
+      "input_tokens": 1061,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S20",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "blood",
+        "confidence": 1.0,
+        "probabilities": {
+          "other_or_unclear": 0.0,
+          "liver": 0.0,
+          "breast": 0.0,
+          "lung": 0.0,
+          "colon": 0.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "blood": 1.0,
+          "skin": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 0.0,
+          "tumor": 1.0,
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "wgs_wes",
+        "confidence": 1.0,
+        "probabilities": {
+          "single_cell_rna_seq": 0.0,
+          "wgs_wes": 1.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "other": 0.0,
+          "chip_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1064,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S21",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "blood",
+        "confidence": 1.0,
+        "probabilities": {
+          "brain": 0.0,
+          "breast": 0.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0,
+          "blood": 1.0,
+          "skin": 0.0,
+          "colon": 0.0,
+          "liver": 0.0,
+          "kidney": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 0.98,
+        "probabilities": {
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.01,
+          "tumor": 0.99
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "chip_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "other": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 1.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 1040,
+      "output_tokens": 267
+    }
+  },
+  {
+    "sample_id": "S22",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "skin",
+        "confidence": 1.0,
+        "probabilities": {
+          "liver": 0.0,
+          "skin": 1.0,
+          "kidney": 0.0,
+          "brain": 0.0,
+          "breast": 0.0,
+          "blood": 0.0,
+          "other_or_unclear": 0.0,
+          "colon": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 1.0,
+          "tumor": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "bulk_rna_seq": 1.0,
+          "chip_seq": 0.0,
+          "dna_methylation": 0.0,
+          "wgs_wes": 0.0,
+          "other": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "atac_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.08
+      }
+    },
+    "usage": {
+      "input_tokens": 1044,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S23",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "skin",
+        "confidence": 1.0,
+        "probabilities": {
+          "skin": 1.0,
+          "blood": 0.0,
+          "liver": 0.0,
+          "brain": 0.0,
+          "colon": 0.0,
+          "other_or_unclear": 0.0,
+          "breast": 0.0,
+          "kidney": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor": 0.0,
+          "non_cancer_disease": 1.0,
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 0.0,
+          "unclear": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "wgs_wes": 0.0,
+          "other": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "atac_seq": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0,
+          "bulk_rna_seq": 1.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.08
+      }
+    },
+    "usage": {
+      "input_tokens": 1045,
+      "output_tokens": 273
+    }
+  },
+  {
+    "sample_id": "S24",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "skin",
+        "confidence": 0.8,
+        "probabilities": {
+          "other_or_unclear": 0.17,
+          "breast": 0.0,
+          "colon": 0.0,
+          "liver": 0.0,
+          "brain": 0.0,
+          "lung": 0.0,
+          "kidney": 0.0,
+          "blood": 0.01,
+          "skin": 0.82
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "non_cancer_disease": 0.0,
+          "healthy_control": 0.0,
+          "tumor": 1.0,
+          "tumor_adjacent_normal": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "wgs_wes",
+        "confidence": 1.0,
+        "probabilities": {
+          "wgs_wes": 1.0,
+          "single_cell_rna_seq": 0.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "other": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1044,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S25",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "skin",
+        "confidence": 1.0,
+        "probabilities": {
+          "blood": 0.0,
+          "breast": 0.0,
+          "kidney": 0.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0,
+          "brain": 0.0,
+          "colon": 0.0,
+          "skin": 1.0,
+          "liver": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "tumor": 1.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 0.0,
+          "healthy_control": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "atac_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 1.0,
+          "other": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    "usage": {
+      "input_tokens": 1065,
+      "output_tokens": 268
+    }
+  },
+  {
+    "sample_id": "S26",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "kidney",
+        "confidence": 1.0,
+        "probabilities": {
+          "other_or_unclear": 0.0,
+          "kidney": 1.0,
+          "colon": 0.0,
+          "lung": 0.0,
+          "skin": 0.0,
+          "liver": 0.0,
+          "brain": 0.0,
+          "breast": 0.0,
+          "blood": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "tumor",
+        "confidence": 1.0,
+        "probabilities": {
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "healthy_control": 0.0,
+          "tumor": 1.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "dna_methylation",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 1.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "other": 0.0,
+          "single_cell_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.08
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.06
+      }
+    },
+    "usage": {
+      "input_tokens": 1048,
+      "output_tokens": 271
+    }
+  },
+  {
+    "sample_id": "S27",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "kidney",
+        "confidence": 1.0,
+        "probabilities": {
+          "breast": 0.0,
+          "blood": 0.0,
+          "brain": 0.0,
+          "skin": 0.0,
+          "other_or_unclear": 0.0,
+          "colon": 0.0,
+          "kidney": 1.0,
+          "liver": 0.0,
+          "lung": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "non_cancer_disease",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "tumor": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 1.0,
+          "unclear": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "other",
+        "confidence": 1.0,
+        "probabilities": {
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "other": 1.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.1
+      }
+    },
+    "usage": {
+      "input_tokens": 1053,
+      "output_tokens": 271
+    }
+  },
+  {
+    "sample_id": "S28",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "kidney",
+        "confidence": 0.97,
+        "probabilities": {
+          "liver": 0.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "skin": 0.0,
+          "colon": 0.0,
+          "breast": 0.0,
+          "lung": 0.0,
+          "kidney": 0.98,
+          "other_or_unclear": 0.02
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 0.61,
+        "probabilities": {
+          "tumor": 0.07,
+          "non_cancer_disease": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "unclear": 0.24,
+          "healthy_control": 0.69
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "bulk_rna_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "wgs_wes": 0.0,
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "other": 0.0,
+          "bulk_rna_seq": 1.0,
+          "chip_seq": 0.0,
+          "single_cell_rna_seq": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "usage": {
+      "input_tokens": 1060,
+      "output_tokens": 270
+    }
+  },
+  {
+    "sample_id": "S29",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "other_or_unclear",
+        "confidence": 1.0,
+        "probabilities": {
+          "liver": 0.0,
+          "lung": 0.0,
+          "breast": 0.0,
+          "colon": 0.0,
+          "brain": 0.0,
+          "blood": 0.0,
+          "skin": 0.0,
+          "kidney": 0.0,
+          "other_or_unclear": 1.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "unclear",
+        "confidence": 1.0,
+        "probabilities": {
+          "healthy_control": 0.0,
+          "tumor": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "non_cancer_disease": 0.0,
+          "unclear": 1.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "other",
+        "confidence": 0.63,
+        "probabilities": {
+          "bulk_rna_seq": 0.32,
+          "single_cell_rna_seq": 0.0,
+          "dna_methylation": 0.0,
+          "chip_seq": 0.0,
+          "atac_seq": 0.0,
+          "wgs_wes": 0.0,
+          "other": 0.68
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.15
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.07
+      }
+    },
+    "usage": {
+      "input_tokens": 1034,
+      "output_tokens": 269
+    }
+  },
+  {
+    "sample_id": "S30",
+    "model": "jev-1.13.0",
+    "answers": {
+      "tissue": {
+        "type": "choice",
+        "choice": "liver",
+        "confidence": 1.0,
+        "probabilities": {
+          "kidney": 0.0,
+          "brain": 0.0,
+          "liver": 1.0,
+          "lung": 0.0,
+          "other_or_unclear": 0.0,
+          "breast": 0.0,
+          "skin": 0.0,
+          "blood": 0.0,
+          "colon": 0.0
+        }
+      },
+      "condition": {
+        "type": "choice",
+        "choice": "healthy_control",
+        "confidence": 0.99,
+        "probabilities": {
+          "tumor": 0.0,
+          "unclear": 0.0,
+          "tumor_adjacent_normal": 0.0,
+          "healthy_control": 1.0,
+          "non_cancer_disease": 0.0
+        }
+      },
+      "assay": {
+        "type": "choice",
+        "choice": "chip_seq",
+        "confidence": 1.0,
+        "probabilities": {
+          "dna_methylation": 0.0,
+          "atac_seq": 0.0,
+          "bulk_rna_seq": 0.0,
+          "chip_seq": 1.0,
+          "single_cell_rna_seq": 0.0,
+          "other": 0.0,
+          "wgs_wes": 0.0
+        }
+      },
+      "cell_line": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "treated": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 1049,
+      "output_tokens": 268
+    }
+  }
+]
