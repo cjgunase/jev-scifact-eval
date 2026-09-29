@@ -1,0 +1,27 @@
+{
+  "confusion_counts": {
+    "supports": {
+      "supports": 118,
+      "contradicts": 3,
+      "not_enough_info": 22
+    },
+    "contradicts": {
+      "supports": 7,
+      "contradicts": 66,
+      "not_enough_info": 17
+    },
+    "not_enough_info": {
+      "supports": 13,
+      "contradicts": 2,
+      "not_enough_info": 73
+    }
+  },
+  "roc_abstract_auc": {
+    "Jev": 0.9924428433519343,
+    "Keyword search (BM25)": 0.9089110216382943
+  },
+  "roc_sentence_auc": {
+    "Jev": 0.8994387830453405,
+    "Word overlap with claim": 0.6929774036331413
+  }
+}

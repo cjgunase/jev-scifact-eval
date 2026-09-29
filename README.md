@@ -6,6 +6,11 @@ The held-out dev split was run once, after question wording and thresholds were 
 
 ![Summary](results/figures/summary_for_social.png)
 
+<p float="left">
+  <img src="results/figures/confusion_matrix_dev.png" width="49%" />
+  <img src="results/figures/roc_curves_dev.png" width="49%" />
+</p>
+
 ## Results (held-out dev, 95% bootstrap CIs)
 
 | | Result |
