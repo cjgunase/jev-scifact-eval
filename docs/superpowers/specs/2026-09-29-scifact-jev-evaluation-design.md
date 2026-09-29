@@ -31,7 +31,8 @@ SciFact (Wadden et al., 2020), from AI2's original release:
 - Expert-written claims, each with gold evidence: relevant abstract IDs, a label per abstract
   (`SUPPORT` / `CONTRADICT`), and evidence sentence sets. Claims without evidence count as NEI (not enough info).
 - License: CC BY-NC 2.0. Raw files live in `data/raw/scifact/` (gitignored) and are never modified.
-- Record at download time: the exact file counts, claims per split, and SHA-256 of the tarball.
+- Recorded at download (2026-09-29): tarball SHA-256 `11c62128…76be`; corpus 5,183 abstracts (median 8 sentences, max 367); train 809 claims (505 with evidence); dev 300 claims (188 with evidence).
+- **Join-key caveat:** `doc_id` is an int in the corpus but a string key in `claims.evidence`. Every join must cast explicitly.
 
 ### Splits
 
@@ -91,6 +92,8 @@ results/tables, results/figures
 - Questions:
   - `verdict`, a **Choice**: `supports`, `contradicts`, `not_enough_info`, with criteria written so that "same topic but no finding about the claim" maps to `not_enough_info`.
   - `evidence_s{i}`, one **Noul** per sentence: "Does sentence `abstract.sentences.s{i}` report a finding, on its own or together with neighbouring sentences, that bears on whether the claim is true?"
+- Abstracts with more than 40 sentences (9 in the corpus, max 367) have their sentence Nouls split into
+  chunks of at most 40 per request over the same state. The verdict is asked only in the first chunk.
 - Output: `data/processed/{split}/verify.jsonl`.
 
 ### 3.4 `04_assemble_predictions.py`
@@ -112,7 +115,7 @@ See §5.
 | `questions.py` | Every Jev question definition, with a `QUESTION_VERSION` string |
 | `jev_client.py` | Cached, budget-guarded wrapper around `AsyncTypeSafeClient` |
 | `budget.py` | Spend ledger and hard cap |
-| `scifact_metrics.py` | Official metric code, vendored from `allenai/scifact` (`verisci/evaluate/lib/metrics.py`) with its commit SHA recorded in the header |
+| `scifact_official/` | Official `metrics.py` and `data.py`, vendored unmodified from `allenai/scifact` @ `68b98a56`, with provenance in `__init__.py` |
 | `baselines.py` | Baseline predictors |
 
 ### 4.1 Caching and budget guard
@@ -141,7 +144,7 @@ Recall@{1,3,10} and MRR of the gold abstracts: BM25 alone vs BM25 + Jev re-ranki
 ### 5.3 Verification in isolation (oracle abstracts)
 On (claim, gold abstract) pairs only:
 - Verdict accuracy, and macro-F1 over {supports, contradicts}
-- A confusion matrix, which also covers NEI claims paired with their BM25 top-1 as negatives
+- A confusion matrix, which also covers NEI claims paired with their re-ranked top-1 abstract as negatives (already judged in the top 3, so no extra cost)
 - Evidence-sentence precision, recall and F1 at `τ_sentence`, plus AUROC of P(evidence) against gold evidence sentences
 
 ### 5.4 Confidence
