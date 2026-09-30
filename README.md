@@ -6,10 +6,13 @@ The held-out dev split was run once, after question wording and thresholds were 
 
 ![Summary](results/figures/summary_for_social.png)
 
-<p float="left">
-  <img src="results/figures/confusion_matrix_dev.png" width="49%" />
-  <img src="results/figures/roc_curves_dev.png" width="49%" />
-</p>
+### Does the paper support or contradict the claim? (Jev vs expert labels)
+
+<img src="results/figures/confusion_matrix_dev.png" width="100%" alt="Confusion matrix of Jev verdicts vs expert labels" />
+
+### Jev vs keyword methods (ROC curves)
+
+<img src="results/figures/roc_curves_dev.png" width="100%" alt="ROC curves: Jev vs BM25 for paper relevance, Jev vs word overlap for evidence sentences" />
 
 ## Results (held-out dev, 95% bootstrap CIs)
 
